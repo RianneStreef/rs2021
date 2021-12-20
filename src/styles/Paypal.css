@@ -1,0 +1,19 @@
+.paypal-text {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.paypal-message {
+  color: magenta;
+  font-size: xx-large;
+  text-align: center;
+}
+
+.paypal-logo {
+  width: 20%;
+}
+
+.paypal-amount {
+  margin: 30px;
+}

@@ -11,8 +11,6 @@ const Layout = ({ children }) => {
   useEffect(() => {
     if (localStorage.getItem("languageInStorage")) {
       setLanguage(languageInStorage);
-      console.log("language found");
-      console.log(languageInStorage);
     }
   }, []);
 

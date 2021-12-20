@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-template",
+  "name": "rs2021",
   "version": "1.0.0",
   "private": true,
-  "description": "gatsby-template",
+  "description": "rs2021",
   "author": "RianneStreef",
   "keywords": [
     "gatsby"
@@ -17,6 +17,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@paypal/react-paypal-js": "^7.5.0",
     "dotenv": "^10.0.0",
     "gatsby": "^4.2.0",
     "gatsby-plugin-image": "^2.2.0",
@@ -43,11 +44,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RianneStreef/gatsby-template.git"
+    "url": "git+https://github.com/RianneStreef/rs2021.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RianneStreef/gatsby-template/issues"
+    "url": "https://github.com/RianneStreef/rs2021/issues"
   },
-  "homepage": "https://github.com/RianneStreef/gatsby-template#readme"
+  "homepage": "https://github.com/RianneStreef/rs2021#readme"
 }

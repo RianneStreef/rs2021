@@ -6,6 +6,8 @@ import "../styles/global.css";
 import { content } from "../content/languages";
 import intakeInfo from "../content/intake";
 
+import Paypal from "../components/Paypal";
+
 const IndexPage = function (props) {
   let { language, languageToUse } = props;
 
@@ -13,8 +15,6 @@ const IndexPage = function (props) {
     ? (languageToUse = content.english)
     : (languageToUse = content.french);
 
-  console.log(languageToUse);
-  console.log(languageToUse.metaKeywords);
   return (
     <div>
       <Helmet>
@@ -24,6 +24,7 @@ const IndexPage = function (props) {
         <meta name="keywords" content={languageToUse.metaKeywords} />
         <link rel="canonical" href={intakeInfo.domainName} />
       </Helmet>
+      <Paypal />
     </div>
   );
 };
