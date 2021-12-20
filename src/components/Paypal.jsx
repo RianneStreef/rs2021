@@ -52,9 +52,12 @@ const Paypal = () => {
       );
 
       // Show a success message within this page, e.g.
-      const element = document.getElementById("paypal-message");
-      element.innerHTML = "";
-      element.innerHTML = "Thank you for your payment!";
+      const message = document.getElementById("paypal-message");
+      message.innerHTML = "";
+      message.innerHTML = "Thank you for your payment!";
+
+      const buttons = document.getElementById("paypal-buttons");
+      buttons.classList.add = "hidden";
     });
   };
 
@@ -82,18 +85,20 @@ const Paypal = () => {
           />
         </label>
       </div>
-      <PayPalScriptProvider options={SCRIPT_PROVIDER_OPTIONS}>
-        <PayPalButtons
-          style={{
-            layout: "vertical",
-            color: "silver",
-            shape: "pill",
-            label: "paypal",
-          }}
-          createOrder={(data, actions) => createOrder(data, actions)}
-          onApprove={(data, actions) => onApprove(data, actions)}
-        />
-      </PayPalScriptProvider>
+      <div id="paypal-buttons">
+        <PayPalScriptProvider options={SCRIPT_PROVIDER_OPTIONS}>
+          <PayPalButtons
+            style={{
+              layout: "vertical",
+              color: "silver",
+              shape: "pill",
+              label: "paypal",
+            }}
+            createOrder={(data, actions) => createOrder(data, actions)}
+            onApprove={(data, actions) => onApprove(data, actions)}
+          />
+        </PayPalScriptProvider>
+      </div>
     </>
   );
 };
