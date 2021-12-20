@@ -36,7 +36,7 @@ const Paypal = () => {
   };
 
   const SCRIPT_PROVIDER_OPTIONS = {
-    "client-id": process.env.PAYPAL_CLIENT_ID,
+    "client-id": "test",
     currency: "EUR",
   };
 
