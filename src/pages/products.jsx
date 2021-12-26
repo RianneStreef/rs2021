@@ -1,21 +1,10 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { Helmet } from "react-helmet";
 
 const Shopify = (props) => {
   console.log(props.data);
 
-  let products = props.data.allShopifyProduct.nodes;
-
-  const productsDescriptions = products.map((product) => {
-    return (
-      <div key={product.id}>
-        <Link to={`/products/${product.handle}`}>{product.title}</Link>
-        {" - "}€{product.priceRangeV2.maxVariantPrice.amount}
-      </div>
-    );
-  });
-
-  const showProducts = () => {
+  (function () {
     var scriptURL =
       "https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js";
     if (window.ShopifyBuy) {
@@ -40,12 +29,12 @@ const Shopify = (props) => {
     function ShopifyBuyInit() {
       var client = ShopifyBuy.buildClient({
         domain: "vts-web-design.myshopify.com",
-        storefrontAccessToken: process.env.GATSBY_SHOPIFY_STOREFRONT_TOKEN,
+        storefrontAccessToken: "281301e921b8f1b32c5ab72d8c9ae41f",
       });
       ShopifyBuy.UI.onReady(client).then(function (ui) {
         ui.createComponent("collection", {
           id: "396238815462",
-          node: document.getElementById("collection-component-1640268550426"),
+          node: document.getElementById("collection-component-1640519897851"),
           moneyFormat: "%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D",
           options: {
             product: {
@@ -157,39 +146,17 @@ const Shopify = (props) => {
         });
       });
     }
-  };
+  })();
 
   return (
-    <div>
-      <h1>My products</h1>
-      {productsDescriptions}
-      <div id="collection-component-1640268550426" />
-      <div>{showProducts}</div>
-    </div>
+    <>
+      <Helmet></Helmet>
+      <div>
+        <h1>My products</h1>
+        <div id="collection-component-1640519897851"></div>
+      </div>
+    </>
   );
 };
-
-export const productQuery = graphql`
-  query MyQuery {
-    allShopifyProduct {
-      nodes {
-        shopifyId
-        handle
-        description
-        images {
-          src
-        }
-        title
-        priceRangeV2 {
-          maxVariantPrice {
-            amount
-            currencyCode
-          }
-        }
-        status
-      }
-    }
-  }
-`;
 
 export default Shopify;

@@ -11,22 +11,21 @@ const Paypal = () => {
   let [currency, setCurrency] = useState("EUR");
 
   const handleInput = (event) => {
-    let newAmount = event.target.value;
+    const newAmount = (event.target.amount = event.target.value);
     console.log("newAmount");
     console.log(newAmount);
     setAmount(newAmount);
   };
 
   const handleCurrencyChange = (event) => {
-    let newCurrency = event.target.value;
+    const newCurrency = (event.target.currency = event.target.value);
     console.log("change currency to: ");
     console.log(newCurrency);
     setCurrency(newCurrency);
   };
 
   const createOrder = (data, actions) => {
-    console.log("creating order");
-    console.log("amount");
+    console.log("creating order for");
     console.log(amount);
     console.log(currency);
     return actions.order.create({
@@ -43,7 +42,7 @@ const Paypal = () => {
   const [success, setSuccess] = useState(false);
 
   const SCRIPT_PROVIDER_OPTIONS = {
-    "client-id": process.env.PAYPAL_CLIENT_ID,
+    "client-id": "test",
     currency: currency,
   };
 
