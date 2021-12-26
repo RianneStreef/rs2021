@@ -1,8 +1,125 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 
-const Shopify = (props) => {
-  console.log(props.data);
+import "../styles/products.css";
+
+const Shopify = () => {
+  const options = {
+    product: {
+      styles: {
+        product: {
+          "@media (min-width: 601px)": {
+            "max-width": "calc(25% - 20px)",
+            "margin-left": "20px",
+            "margin-bottom": "50px",
+            width: "calc(25% - 20px)",
+          },
+          img: {
+            height: "calc(100% - 15px)",
+            position: "absolute",
+            left: "0",
+            right: "0",
+            top: "0",
+          },
+          imgWrapper: {
+            "padding-top": "calc(75% + 15px)",
+            position: "relative",
+            height: "0",
+          },
+        },
+        button: {
+          ":hover": {
+            "background-color": "#bd0be0",
+          },
+          "background-color": "#d20cf9",
+          ":focus": {
+            "background-color": "#bd0be0",
+          },
+        },
+      },
+      text: {
+        button: "Add to cart",
+      },
+    },
+    productSet: {
+      styles: {
+        products: {
+          "@media (min-width: 601px)": {
+            "margin-left": "-20px",
+          },
+        },
+      },
+    },
+    modalProduct: {
+      contents: {
+        img: false,
+        imgWithCarousel: true,
+        button: false,
+        buttonWithQuantity: true,
+      },
+      styles: {
+        product: {
+          "@media (min-width: 601px)": {
+            "max-width": "100%",
+            "margin-left": "0px",
+            "margin-bottom": "0px",
+          },
+        },
+        button: {
+          ":hover": {
+            "background-color": "#bd0be0",
+          },
+          "background-color": "#d20cf9",
+          ":focus": {
+            "background-color": "#bd0be0",
+          },
+        },
+      },
+      text: {
+        button: "Add to cart",
+      },
+    },
+    option: {},
+    cart: {
+      styles: {
+        button: {
+          ":hover": {
+            "background-color": "#bd0be0",
+          },
+          "background-color": "#d20cf9",
+          ":focus": {
+            "background-color": "#bd0be0",
+          },
+        },
+      },
+      text: {
+        total: "Subtotal",
+        button: "Checkout",
+      },
+    },
+    toggle: {
+      styles: {
+        toggle: {
+          "background-color": "#d20cf9",
+          ":hover": {
+            "background-color": "#bd0be0",
+          },
+          ":focus": {
+            "background-color": "#bd0be0",
+          },
+        },
+      },
+    },
+  };
+
+  let [collectionId, setCollectionId] = useState("396238815462");
+
+  function showCollection(event) {
+    let newCollectionId = event.target.value;
+    console.log(event.target.value);
+    setCollectionId(event.target.value);
+    console.log(newCollectionId);
+  }
 
   useEffect(() => {
     (function () {
@@ -34,116 +151,10 @@ const Shopify = (props) => {
         });
         ShopifyBuy.UI.onReady(client).then(function (ui) {
           ui.createComponent("collection", {
-            id: "396238815462",
+            id: collectionId,
             node: document.getElementById("collection-component-1640519897851"),
             moneyFormat: "%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D",
-            options: {
-              product: {
-                styles: {
-                  product: {
-                    "@media (min-width: 601px)": {
-                      "max-width": "calc(25% - 20px)",
-                      "margin-left": "20px",
-                      "margin-bottom": "50px",
-                      width: "calc(25% - 20px)",
-                    },
-                    img: {
-                      height: "calc(100% - 15px)",
-                      position: "absolute",
-                      left: "0",
-                      right: "0",
-                      top: "0",
-                    },
-                    imgWrapper: {
-                      "padding-top": "calc(75% + 15px)",
-                      position: "relative",
-                      height: "0",
-                    },
-                  },
-                  button: {
-                    ":hover": {
-                      "background-color": "#bd0be0",
-                    },
-                    "background-color": "#d20cf9",
-                    ":focus": {
-                      "background-color": "#bd0be0",
-                    },
-                  },
-                },
-                text: {
-                  button: "Add to cart",
-                },
-              },
-              productSet: {
-                styles: {
-                  products: {
-                    "@media (min-width: 601px)": {
-                      "margin-left": "-20px",
-                    },
-                  },
-                },
-              },
-              modalProduct: {
-                contents: {
-                  img: false,
-                  imgWithCarousel: true,
-                  button: false,
-                  buttonWithQuantity: true,
-                },
-                styles: {
-                  product: {
-                    "@media (min-width: 601px)": {
-                      "max-width": "100%",
-                      "margin-left": "0px",
-                      "margin-bottom": "0px",
-                    },
-                  },
-                  button: {
-                    ":hover": {
-                      "background-color": "#bd0be0",
-                    },
-                    "background-color": "#d20cf9",
-                    ":focus": {
-                      "background-color": "#bd0be0",
-                    },
-                  },
-                },
-                text: {
-                  button: "Add to cart",
-                },
-              },
-              option: {},
-              cart: {
-                styles: {
-                  button: {
-                    ":hover": {
-                      "background-color": "#bd0be0",
-                    },
-                    "background-color": "#d20cf9",
-                    ":focus": {
-                      "background-color": "#bd0be0",
-                    },
-                  },
-                },
-                text: {
-                  total: "Subtotal",
-                  button: "Checkout",
-                },
-              },
-              toggle: {
-                styles: {
-                  toggle: {
-                    "background-color": "#d20cf9",
-                    ":hover": {
-                      "background-color": "#bd0be0",
-                    },
-                    ":focus": {
-                      "background-color": "#bd0be0",
-                    },
-                  },
-                },
-              },
-            },
+            options: options,
           });
         });
       }
@@ -153,10 +164,30 @@ const Shopify = (props) => {
   return (
     <>
       <Helmet></Helmet>
-      <div>
-        <h1>My products</h1>
-        <div id="collection-component-1640519897851"></div>
+      <div className="collection-button-container">
+        <button
+          className="collection-button"
+          value="396238815462"
+          onClick={showCollection}
+        >
+          All
+        </button>
+        <button
+          className="collection-button"
+          value="396404981990"
+          onClick={showCollection}
+        >
+          Options
+        </button>
+        <button
+          className="collection-button"
+          value="396404195558"
+          onClick={showCollection}
+        >
+          Gift
+        </button>
       </div>
+      <div id="collection-component-1640519897851" />
     </>
   );
 };

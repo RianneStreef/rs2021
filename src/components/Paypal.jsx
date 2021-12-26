@@ -11,16 +11,12 @@ const Paypal = () => {
   let [currency, setCurrency] = useState("EUR");
 
   const handleInput = (event) => {
-    const newAmount = (event.target.amount = event.target.value);
-    console.log("newAmount");
-    console.log(newAmount);
+    const newAmount = event.target.value;
     setAmount(newAmount);
   };
 
   const handleCurrencyChange = (event) => {
-    const newCurrency = (event.target.currency = event.target.value);
-    console.log("change currency to: ");
-    console.log(newCurrency);
+    const newCurrency = event.target.value;
     setCurrency(newCurrency);
   };
 
@@ -102,7 +98,10 @@ const Paypal = () => {
         </label>
       </div>
       <div id="paypal-buttons" className={`${success ? " hidden" : ""}`}>
-        <PayPalScriptProvider options={SCRIPT_PROVIDER_OPTIONS}>
+        <PayPalScriptProvider
+          options={SCRIPT_PROVIDER_OPTIONS}
+          forceReRender={[SCRIPT_PROVIDER_OPTIONS]}
+        >
           <PayPalButtons
             style={{
               layout: "vertical",
@@ -112,12 +111,9 @@ const Paypal = () => {
             }}
             createOrder={(data, actions) => createOrder(data, actions)}
             onApprove={(data, actions) => onApprove(data, actions)}
+            forceReRender={[amount]}
           />
         </PayPalScriptProvider>
-        <p>
-          {amount}
-          {currency}
-        </p>
       </div>
     </>
   );
