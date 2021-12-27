@@ -36,6 +36,7 @@ const Paypal = () => {
   };
 
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const SCRIPT_PROVIDER_OPTIONS = {
     "client-id": "test",
@@ -60,9 +61,14 @@ const Paypal = () => {
     });
   };
 
-  // const onError = (err) => {
-  //   console.log(err);
-  // };
+  const onError = (err) => {
+    console.log(err);
+    setError(true);
+  };
+
+  function reloadPage() {
+    setSuccess(false);
+  }
 
   return (
     <>
@@ -74,9 +80,13 @@ const Paypal = () => {
       <div className="paypal-text">
         <div className="paypal-message">
           {success ? (
-            <h1>Thank you for your transaction!</h1>
+            <>
+              {" "}
+              <h1>Thank you for your transaction!</h1>
+              <button onClick={reloadPage}>Back to Homepage</button>
+            </>
           ) : (
-            <h1>Send me money! :) Mimi"</h1>
+            <h1>Send me money! :)"</h1>
           )}
         </div>
         <img src={logo} alt="unicorn logo" className="paypal-logo" />
@@ -115,6 +125,12 @@ const Paypal = () => {
           />
         </PayPalScriptProvider>
       </div>
+
+      {error ? (
+        <>
+          <h2 className="error">An error occurred</h2>
+        </>
+      ) : null}
     </>
   );
 };
